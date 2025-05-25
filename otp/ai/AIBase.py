@@ -11,6 +11,8 @@ from direct.interval.IntervalManager import ivalMgr
 from direct.task import Task
 from direct.showbase import EventManager
 from direct.showbase import ExceptionVarDump
+from direct.showbase import DConfig
+from pirates.utilities import recordFunctorCreationStacks
 import math
 import sys
 import time
@@ -20,7 +22,7 @@ class AIBase:
     notify = directNotify.newCategory('AIBase')
     
     def __init__(self):
-        self.config = getConfigShowbase()
+        self.config = DConfig
         __builtins__['__dev__'] = self.config.GetBool('want-dev', 0)
         logStackDump = self.config.GetBool('log-stack-dump', not __dev__) or self.config.GetBool('ai-log-stack-dump', not __dev__)
         uploadStackDump = self.config.GetBool('upload-stack-dump', 0)
@@ -59,7 +61,7 @@ class AIBase:
         __builtins__['hidden'] = self.hidden
         __builtins__['render'] = self.render
         AIBase.notify.info('__dev__ == %s' % __dev__)
-        PythonUtil.recordFunctorCreationStacks()
+        recordFunctorCreationStacks()
         __builtins__['wantTestObject'] = self.config.GetBool('want-test-object', 0)
         self.wantStats = self.config.GetBool('want-pstats', 0)
         Task.TaskManager.pStatsTasks = self.config.GetBool('pstats-tasks', 0)

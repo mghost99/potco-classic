@@ -12,7 +12,7 @@ from otp.otpbase import OTPGlobals
 from otp.friends.FriendInfo import FriendInfo
 from pirates.piratesbase import Freebooter
 from pirates.band import BandConstance
-import GuiButton
+from . import GuiButton
 from direct.showbase.DirectObject import *
 import copy
 MODE_FRIEND_AVATAR = 0

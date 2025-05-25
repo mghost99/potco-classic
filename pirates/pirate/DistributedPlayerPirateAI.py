@@ -447,7 +447,7 @@ class DistributedPlayerPirateAI(DistributedPlayerAI, DistributedBattleAvatarAI, 
         tonics = inventory.getTonics()
         idealAmount = max(0, self.getMaxHp() * 0.8 - self.getHp()[0])
         bestTonicId = InventoryType.Potion1
-        for tonicId, count in sorted(tonics.iteritems()):
+        for tonicId, count in sorted(tonics.items()):
             if count:
                 bestTonicId = tonicId
                 if WeaponGlobals.getAttackSelfHP(tonicId) > idealAmount:
@@ -861,7 +861,7 @@ def level(repType, level):
     if inventory:
         totalRep = 0
 
-        for levelIndex in xrange(level):
+        for levelIndex in range(level):
             totalRep += ReputationGlobals.getReputationNeededToLevel(
                 repType, levelIndex)
 

@@ -24,7 +24,7 @@ from pirates.battle import WeaponConstants
 from pirates.battle import WeaponGlobals
 from pirates.battle.WeaponGlobals import *
 from pirates.ship import ShipGlobals
-import CannonGlobals
+from . import CannonGlobals
 import random
 localFireSfxNames = [
     'cball_fire_1.mp3',

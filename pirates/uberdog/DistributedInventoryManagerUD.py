@@ -82,19 +82,19 @@ class CreateInventoryFSM(InventoryOperationFSM):
 
     def enterStart(self):
         categoryLimits = []
-        for key, limit in InventoryInit.CategoryLimits.iteritems():
+        for key, limit in InventoryInit.CategoryLimits.items():
             categoryLimits.append((key, limit))
 
         accumulators = []
-        for key, limit in InventoryInit.AccumulatorLimits.iteritems():
+        for key, limit in InventoryInit.AccumulatorLimits.items():
             accumulators.append((key, 0))
 
         stackLimits = []
-        for key, limit in InventoryInit.StackLimits.iteritems():
+        for key, limit in InventoryInit.StackLimits.items():
             stackLimits.append((key, limit))
 
         startStacks = []
-        for key, amount in InventoryInit.StartingStacks.iteritems():
+        for key, amount in InventoryInit.StartingStacks.items():
             startStacks.append((key, amount))
 
         fields = {

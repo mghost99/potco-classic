@@ -1,5 +1,5 @@
 import traceback
-import __builtin__
+import builtins
 import os
 import argparse
 
@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 for prc in args.config:
     if not os.path.exists(prc):
-        print ':ServiceStart(warning): Failed to locate prc %s!' % prc
+        print(':ServiceStart(warning): Failed to locate prc %s!' % prc)
         continue
     loadPrcFile(prc)
 
@@ -40,7 +40,7 @@ class game:
     name = 'pirates'
     process = 'server'
 
-__builtin__.game = game
+builtins.game = game
 
 from otp.ai.AIBaseGlobal import *
 

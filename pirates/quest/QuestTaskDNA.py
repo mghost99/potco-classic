@@ -124,10 +124,10 @@ class QuestTaskDNA(POD):
         pass
 
     def getDescriptionText(self, state):
-        raise 'derived must override'
+        raise('derived must override')
 
     def getTitle(self):
-        raise 'derived must override'
+        raise('derived must override')
 
     def getDialogBefore(self):
         return random.choice(PLocalizer.QuestDefaultDialogBefore)

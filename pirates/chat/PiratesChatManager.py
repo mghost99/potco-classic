@@ -16,9 +16,9 @@ from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesgui import PDialog
 from pirates.piratesgui import GuiPanel
 from pirates.piratesgui import ChatPanel
-from PChatInputSpeedChat import PChatInputSpeedChat
-from PChatInputTyped import PChatInputTyped
-from PChatInputWhiteList import PChatInputWhiteList
+from .PChatInputSpeedChat import PChatInputSpeedChat
+from .PChatInputTyped import PChatInputTyped
+from .PChatInputWhiteList import PChatInputWhiteList
 
 class PiratesChatManager(ChatManagerV2.ChatManagerV2):
     notify = DirectNotifyGlobal.directNotify.newCategory('PiratesChatManager')
@@ -209,7 +209,7 @@ class PiratesChatManager(ChatManagerV2.ChatManagerV2):
             return
         
         if not isinstance(self.preferredMode, str):
-            raise TypeError, 'preferredMode was non-string in toggleWhiteListChat'
+            raise TypeError('preferredMode was non-string in toggleWhiteListChat')
         
         self.whiteListActive = not self.whiteListActive
         if not self.active:

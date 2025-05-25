@@ -15,7 +15,7 @@ from libotp import *
 def isThought(message):
     if len(message) == 0:
         return 0
-    elif string.find(message, ThoughtPrefix, 0, len(ThoughtPrefix)) >= 0:
+    elif message.find(ThoughtPrefix, 0, len(ThoughtPrefix)) >= 0:
         return 1
     else:
         return 0
@@ -307,7 +307,7 @@ class ChatAssistant(DirectObject.DirectObject):
     def sendAvatarOpenTypedChat(self, message):
         error = None
         if not self.checkOpenTypedChat():
-            print 'Chat error'
+            print('Chat error')
             error = ERROR_NO_OPEN_CHAT
         
         chatFlags = CFSpeech | CFTimeout

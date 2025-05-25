@@ -86,7 +86,7 @@ class CrewHUD(SocialPage.SocialPage):
                 skillFrameSea]
         
         if self.debugAvId and self.debugCount < 11:
-            print 'In CrewHUD Debug mode, generating debug button %s' % self.debugCount
+            print('In CrewHUD Debug mode, generating debug button %s' % self.debugCount)
             self.debugCount += 1
             self.addCrew(member)
     
@@ -179,11 +179,11 @@ class CrewHUD(SocialPage.SocialPage):
     
     def debugFullCrewList(self):
         self.debugAvId = True
-        print 'DEBUG: Activating crew HUD display debug mode'
+        print('DEBUG: Activating crew HUD display debug mode')
     
     def destroyFullCrewList(self):
         self.debugAvId = False
-        print 'DEBUG: Deactivating crew HUD display debug mode'
+        print('DEBUG: Deactivating crew HUD display debug mode')
 
     def respondChatPanelMax(self):
         if self.hudOn and self.chatPanelOpen and self.atSea or self.hudOn and len(self.crew) > 2:

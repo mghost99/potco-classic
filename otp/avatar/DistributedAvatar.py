@@ -10,8 +10,8 @@ from otp.otpbase import OTPLocalizer
 from otp.speedchat import SCDecoders
 from otp.chat import ChatGarbler
 from otp.chat import ChatManager
-from Avatar import Avatar
-import AvatarDNA
+from .Avatar import Avatar
+from . import AvatarDNA
 
 from libotp import *
 

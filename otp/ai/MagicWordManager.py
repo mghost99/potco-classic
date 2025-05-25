@@ -206,7 +206,7 @@ def taskMgr():
     Logs the client's task manager
     """
 
-    print taskMgr
+    print(taskMgr)
     return 'logging client taskMgr...'
 
 @magicWord(category=CATEGORY_SYSTEM_ADMIN)
@@ -215,7 +215,7 @@ def jobMgr():
     Logs the client's job manager
     """
 
-    print jobMgr
+    print(jobMgr)
     return 'logging client jobMgr...'
 
 @magicWord(category=CATEGORY_SYSTEM_ADMIN, types=[float])
@@ -264,7 +264,7 @@ def messenger():
     Logs the client messenger
     """
 
-    print messenger
+    print(messenger)
     self.setMagicWordResponse('logging client messenger...')
 
 @magicWord(category=CATEGORY_SYSTEM_ADMIN)

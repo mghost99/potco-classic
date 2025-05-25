@@ -50,7 +50,7 @@ class CannonGUI(DirectFrame):
         pass
 
     def startReload(self, time, volley, elapsedTime = 0, doneCallback = None):
-        print 'reloaded with time %s and elapsed %s' % (time, elapsedTime)
+        print('reloaded with time %s and elapsed %s' % (time, elapsedTime))
         self.stopReload()
         self.reloadIval = Sequence(LerpFunctionInterval(self.__updateReloadBar, time), Func(self.__reloadDone))
         if doneCallback:

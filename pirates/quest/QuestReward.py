@@ -29,7 +29,7 @@ class QuestReward(POD):
         POD.__init__(self, **kwArgs)
 
     def applyTo(self, trade, av):
-        raise 'derived must override'
+        raise('derived must override')
 
     def getQuestRewardStruct(self):
         rewardStruct = QuestRewardStruct.QuestRewardStruct().copyFrom(self)
@@ -187,7 +187,7 @@ class MaxMojoReward(QuestReward):
 class LuckReward(QuestReward):
 
     def applyTo(self, trade, av):
-        raise 'TODO'
+        raise('TODO')
 
     def getDescriptionText(self):
         return PLocalizer.LuckRewardDesc % self.amount
@@ -196,7 +196,7 @@ class LuckReward(QuestReward):
 class SwiftnessReward(QuestReward):
 
     def applyTo(self, trade, av):
-        raise 'TODO'
+        raise('TODO')
 
     def getDescriptionText(self):
         return PLocalizer.SwiftnessRewardDesc % self.amount
@@ -258,7 +258,7 @@ class PistolUpgradeReward(QuestReward):
         av.giveWeaponMessage(self.amount)
 
     def getDescriptionText(self):
-        if PLocalizer.InventoryTypeNames.has_key(self.amount):
+        if self.amount in PLocalizer.InventoryTypeNames:
             return PLocalizer.InventoryTypeNames.get(self.amount)
         else:
             return PLocalizer.PistolRewardDesc
@@ -314,7 +314,7 @@ class DaggerUpgradeReward(QuestReward):
         av.giveWeaponMessage(self.amount)
 
     def getDescriptionText(self):
-        if PLocalizer.InventoryTypeNames.has_key(self.amount):
+        if self.amount in PLocalizer.InventoryTypeNames:
             return PLocalizer.InventoryTypeNames.get(self.amount)
         else:
             return PLocalizer.DaggerRewardDesc
@@ -340,7 +340,7 @@ class CutlassUpgradeReward(QuestReward):
         av.giveWeaponMessage(self.amount)
 
     def getDescriptionText(self):
-        if PLocalizer.InventoryTypeNames.has_key(self.amount):
+        if self.amount in PLocalizer.InventoryTypeNames:
             return PLocalizer.InventoryTypeNames.get(self.amount)
         else:
             return PLocalizer.CutlassRewardDesc
@@ -366,7 +366,7 @@ class DollUpgradeReward(QuestReward):
         av.giveWeaponMessage(self.amount)
 
     def getDescriptionText(self):
-        if PLocalizer.InventoryTypeNames.has_key(self.amount):
+        if self.amount in PLocalizer.InventoryTypeNames:
             return PLocalizer.InventoryTypeNames.get(self.amount)
         else:
             return PLocalizer.DollRewardDesc
@@ -392,7 +392,7 @@ class WandUpgradeReward(QuestReward):
         av.giveWeaponMessage(self.amount)
 
     def getDescriptionText(self):
-        if PLocalizer.InventoryTypeNames.has_key(self.amount):
+        if self.amount in PLocalizer.InventoryTypeNames:
             return PLocalizer.InventoryTypeNames.get(self.amount)
         else:
             return PLocalizer.DollRewardDesc
@@ -547,7 +547,7 @@ class TattooQuestReward(QuestReward):
 
     def applyTo(self, trade, av):
         doId = av.getDoId()
-        keys = TattooGlobals.tattoos.keys()
+        keys = list(TattooGlobals.tattoos.keys())
         questDrop = TattooGlobals.questDrops.get(self.amount)
         for drop in questDrop:
             if drop in keys:
@@ -564,7 +564,7 @@ class ClothingQuestReward(QuestReward):
     def applyTo(self, trade, av):
         doId = av.getDoId()
         gender = av.dna.getGender()
-        keys = ClothingGlobals.UNIQUE_ID.keys()
+        keys = list(ClothingGlobals.UNIQUE_ID.keys())
         questDrop = ClothingGlobals.questDrops.get(self.amount)
         if questDrop is None:
             return None

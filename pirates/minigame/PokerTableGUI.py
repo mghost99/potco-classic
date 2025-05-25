@@ -329,14 +329,15 @@ class PokerTableGUI(DirectFrame, TableGUI):
         self.playerStatusPanels[guiIndex].actionLabel.hide()
     
     def hideArrow(self):
-        map(lambda panel: panel.arrow.hide(), self.playerStatusPanels)
+        for panel in self.playerStatusPanels:
+            panel.arrow.hide()
 
     def setPlayerActions(self, maxBet, playerActions):
         oldActions = self.playerActions
         self.playerActions = playerActions
         oldMaxBet = self.maxBet
         self.maxBet = maxBet
-        for (i, oldAction, newAction) in zip(range(len(playerActions)), oldActions, playerActions):
+        for (i, oldAction, newAction) in zip(list(range(len(playerActions))), oldActions, playerActions):
             if oldAction != newAction:
                 (action, amount) = newAction
                 panel = self.playerStatusPanels[self.getGuiIndex(i)]
@@ -464,7 +465,8 @@ class PokerTableGUI(DirectFrame, TableGUI):
                         base.chatAssistant.receiveGameMessage(message)
 
     def setLocalAvatarHand(self, cardValues):
-        map(lambda card: card.hide(), self.localStatusPanel.hand)
+        for card in self.localStatusPanel.hand:
+            card.hide()
         self.localStatusPanel.cardScaler.setScale(0.5)
         for (card, newValue) in zip(self.localStatusPanel.hand, cardValues):
             card.show()
@@ -473,7 +475,7 @@ class PokerTableGUI(DirectFrame, TableGUI):
                 card.turnUp()
         
         handNameLabel = self.localStatusPanel.handNameLabel
-        communityCardValues = map(lambda card: card.getValue(), self.communityCards)
+        communityCardValues = [card.getValue() for card in self.communityCards]
         if cardValues:
             if PlayingCardGlobals.Unknown not in cardValues and (self.handId == PlayingCardGlobals.Nothing or self.sortedCards == None):
                 handNameLabel.hide()

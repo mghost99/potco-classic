@@ -631,7 +631,7 @@ __highSeasAdventureRating = {
     50: 'Robber Baron!'}
 
 def getHighSeasRating(value):
-    probabilityTable = __highSeasAdventureRating.keys()
+    probabilityTable = list(__highSeasAdventureRating.keys())
     probabilityTable.sort()
     for rating in probabilityTable:
         if value <= rating:
@@ -652,7 +652,7 @@ __crewAdventureRating = {
     100: 'HighSea Terrors!'}
 
 def getCrewRating(value):
-    probabilityTable = __crewAdventureRating.keys()
+    probabilityTable = list(__crewAdventureRating.keys())
     probabilityTable.sort()
     for rating in probabilityTable:
         if value <= rating:
@@ -3427,8 +3427,8 @@ def getHandNameFull(handCode, cards):
     def getRank(card):
         return card % 13
 
-    cardNames = map(lambda card: PlayingCardRanks[getRank(card)], cards)
-    cardNamesPlural = map(lambda card: PlayingCardRanksPlural[getRank(card)], cards)
+    cardNames = [PlayingCardRanks[getRank(card)] for card in cards]
+    cardNamesPlural = [PlayingCardRanksPlural[getRank(card)] for card in cards]
     if handCode == 'Nothing':
         return ''
     elif handCode == 'NoPair':
@@ -4635,7 +4635,7 @@ TitleOff = 'Off'
 import random
 
 def getPVPRating(score):
-    return random.choice(_pvpRating.values())
+    return random.choice(list(_pvpRating.values()))
 
 PirateerTitle = 'Dubloon Lagoon'
 PirateerInstructions = 'Bring all the treasures to your base to win! But remember only merchant ships can haul treasure.'

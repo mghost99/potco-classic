@@ -452,7 +452,7 @@ class ChatPanel(DirectFrame, FSM):
             elif message.getType() == SHIPPVPCHAT:
                 chatCode = 'CPLtGold'
             else:
-                print 'Error no type'
+                print('Error no type')
             self.wordWrapper.setText(someMessage)
             wrappedText = self.wordWrapper.getWordwrappedText().split('\n')
             tab = '    '
@@ -558,13 +558,13 @@ class ChatPanel(DirectFrame, FSM):
         self.chatBar.disableWhiteListChat()
     
     def checkEmotes(self):
-        for id in PLocalizer.emotes.keys():
+        for id in list(PLocalizer.emotes.keys()):
             pass
         
-        for id in PLocalizer.EmoteCommands.values():
+        for id in list(PLocalizer.EmoteCommands.values()):
             pass
         
-        for id in PLocalizer.nonMenuEmoteAnimations.keys():
+        for id in list(PLocalizer.nonMenuEmoteAnimations.keys()):
             pass
 
     def hide(self):

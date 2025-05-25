@@ -204,12 +204,12 @@ class DistributedInstanceBase(DistributedObject, WorldNode):
         self.worldGrid.turnOn(av)
     
     def _turnOffIslands(self, cacheIslands = []):
-        for island in self.islands.values():
+        for island in list(self.islands.values()):
             cache = island in cacheIslands
             island.turnOff(cache)
 
     def _turnOnIslands(self):
-        for island in self.islands.values():
+        for island in list(self.islands.values()):
             island.turnOn()
 
     def isOn(self):
@@ -267,7 +267,7 @@ class DistributedInstanceBase(DistributedObject, WorldNode):
             areaParent = base.cr.doId2do[parentDoId]
             locationInfo = areaParent.getLocationInfo(uniqueId)
             if locationInfo:
-                print 'left area %s' % locationInfo[2]
+                print('left area %s' % locationInfo[2])
                 localAvatar.sendUpdate('leaveAreaSphere', [uniqueId, parentUid])
 
     def d_localAvatarDied(self):

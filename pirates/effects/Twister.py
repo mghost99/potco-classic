@@ -5,7 +5,7 @@ from direct.particles import Particles
 from direct.particles import ForceGroup
 import random
 import os
-from PooledEffect import PooledEffect
+from .PooledEffect import PooledEffect
 
 class Twister(PooledEffect):
     particleDummy = None

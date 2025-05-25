@@ -61,7 +61,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
 
     def doMagicWord(self, word, avId, zoneId):
         wordIs = self.getWordIs(word)
-        print word
+        print(word)
         if wordIs('~oobe'):
             base.oobe()
         elif wordIs('~oobeCull'):
@@ -135,12 +135,12 @@ class MagicWordManager(DistributedObject.DistributedObject):
             self.forAnother(word, avId, zoneId)
         elif wordIs('~badname'):
             word = '~for %s ~badname' % word[9:]
-            print 'word is %s' % word
+            print('word is %s' % word)
             self.forAnother(word, avId, zoneId)
         elif wordIs('~avId'):
             self.setMagicWordResponse(str(localAvatar.doId))
         elif wordIs('~doId'):
-            name = string.strip(word[6:])
+            name = word[6:].strip()
             objs = self.identifyDistributedObjects(name)
             if len(objs) == 0:
                 response = '%s is unknown.' % name
@@ -179,14 +179,14 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 self.setMagicWordResponse(response)
             else:
                 tm.extraSkew = 0.0
-                skew = string.strip(word[5:])
+                skew = word[5:].strip()
                 if skew != '':
                     tm.extraSkew = float(skew)
                 
                 globalClockDelta.clear()
                 tm.handleHotkey()
         elif wordIs('~period'):
-            timeout = string.strip(word[7:])
+            timeout = word[7:].strip()
             if timeout != '':
                 seconds = int(timeout)
                 self.cr.stopPeriodTimer()
@@ -419,10 +419,10 @@ class MagicWordManager(DistributedObject.DistributedObject):
             base.cr.printObjectCount()
             self.setMagicWordResponse('logging client distributed object count...')
         elif wordIs('~taskmgr'):
-            print taskMgr
+            print(taskMgr)
             self.setMagicWordResponse('logging client taskMgr...')
         elif wordIs('~jobmgr'):
-            print jobMgr
+            print(jobMgr)
             self.setMagicWordResponse('logging client jobMgr...')
         elif wordIs('~jobtime'):
             args = word.split()
@@ -457,7 +457,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             taskMgr.setTaskDurationWarningThreshold(threshold)
             self.setMagicWordResponse(response)
         elif wordIs('~messenger'):
-            print messenger
+            print(messenger)
             self.setMagicWordResponse('logging client messenger...')
         elif wordIs('~clientcrash'):
             DelayedCall(Functor(self.notify.error, '~clientcrash: simulating a client crash'))
@@ -535,7 +535,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
                 return
 
         nextWord = word[b + 1:]
-        name = string.strip(word[5:b])
+        name = word[5:b].strip()
         id = self.identifyAvatar(name)
         if id == None:
             self.setMagicWordResponse("Don't know who %s is." % name)
@@ -548,8 +548,8 @@ class MagicWordManager(DistributedObject.DistributedObject):
 
     def identifyDistributedObjects(self, name):
         result = []
-        lowerName = string.lower(name)
-        for obj in self.cr.doId2do.values():
+        lowerName = name.lower()
+        for obj in list(self.cr.doId2do.values()):
             className = obj.__class__.__name__
             
             try:
@@ -557,13 +557,13 @@ class MagicWordManager(DistributedObject.DistributedObject):
             except:
                 name = className
 
-            if string.lower(name) == lowerName or string.lower(className) == lowerName or string.lower(className) == 'distributed' + lowerName:
+            if name.lower() == lowerName or className.lower() == lowerName or className.lower() == 'distributed' + lowerName:
                 result.append((name, obj))
         
         return result
     
     def getCSBitmask(self, str):
-        words = string.lower(str).split()
+        words = str.lower().split()
         if len(words) == 0:
             return None
         
@@ -595,7 +595,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             else:
                 try:
                     bitmask |= BitMask32.bit(int(w))
-                    print bitmask
+                    print(bitmask)
                 except ValueError:
                     invalid += ' ' + w
 
@@ -615,7 +615,7 @@ class MagicWordManager(DistributedObject.DistributedObject):
             return None
 
     def showfont(self, fontname):
-        fontname = string.strip(string.lower(fontname))
+        fontname = fontname.lower(.strip())
         font = self.getFontByName(fontname)
         if font == None:
             self.setMagicWordResponse('Unknown font: %s' % fontname)
@@ -743,9 +743,9 @@ class MagicWordManager(DistributedObject.DistributedObject):
             if isinstance(av, self.GameAvatarClass) and av.getName() == name:
                 return av.doId
         
-        lowerName = string.lower(name)
+        lowerName = name.lower()
         for av in Avatar.Avatar.ActiveAvatars:
-            if isinstance(av, self.GameAvatarClass) and string.strip(string.lower(av.getName())) == lowerName:
+            if isinstance(av, self.GameAvatarClass) and av.getName(.lower(.strip())) == lowerName:
                 return av.doId
 
         try:
@@ -769,5 +769,5 @@ def magicWord(mw):
     messenger.send('magicWord', [mw])
 
 
-import __builtin__
-__builtin__.magicWord = magicWord
+import builtins
+builtins.magicWord = magicWord

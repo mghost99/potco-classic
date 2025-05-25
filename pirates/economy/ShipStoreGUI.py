@@ -166,8 +166,8 @@ class ShipStoreGUI(GuiPanel.GuiPanel):
                 return
 
         nameData = [
-            PLocalizer.PirateShipPrefix.keys(),
-            PLocalizer.PirateShipSuffix.keys()]
+            list(PLocalizer.PirateShipPrefix.keys()),
+            list(PLocalizer.PirateShipSuffix.keys())]
         self.namePanel = NamePanelGui.NamePanelGui(PLocalizer.NamePanelTitle, nameData)
         self.namePanel.setPos(0.2, 0, 0)
         self.lockStore()

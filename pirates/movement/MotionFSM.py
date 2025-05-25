@@ -1,6 +1,5 @@
 from direct.fsm.FSM import FSM
 from direct.interval.IntervalGlobal import *
-from direct.showbase.PythonUtil import Enum
 from pirates.piratesbase import PiratesGlobals
 from pirates.pirate import Human
 import random
@@ -8,6 +7,8 @@ import types
 from direct.distributed.ClockDelta import *
 from pirates.battle import EnemyGlobals
 from pirates.effects.WaterRipple import WaterRipple
+import enum
+
 WALK_CUTOFF = 0.5
 NPC_WALK_CUTOFF = 0.5
 RUN_CUTOFF = PiratesGlobals.ToonForwardSpeed
@@ -15,7 +16,9 @@ NPC_RUN_CUTOFF = 17.0
 
 class MotionAnimFSM(FSM):
     BLENDAMT = 0.4
-    GROUNDSTATE = Enum('OverSolid, OverWater')
+    class GROUNDSTATE(enum.Enum):
+        OverSolid = 1
+        OverWater = 2
     notify = directNotify.newCategory('MotionAnimFSM')
     
     def __init__(self, av):
@@ -71,7 +74,7 @@ class MotionAnimFSM(FSM):
             if scale:
                 newScale = moveSpeed * scale
             else:
-                if type(style) is not types.StringType:
+                if type(style) is not bytes:
                     style = style.getBodyShape()
                 animFileName = self.av.getAnimFilename(self.av.getCurrentAnim())
                 animSpeedScale = PiratesGlobals.GetAnimScale(animFileName)

@@ -158,7 +158,7 @@ class Grabber(Creature, TentacleUtils):
             self.idle = random.choice(options)
             self.loop('idle_' + self.idle)
         
-        self.iTask = self.doMethodLater(lerp(5, 20, random.random()), self.chooseIdle, `random.random()` + '-idle')
+        self.iTask = self.doMethodLater(lerp(5, 20, random.random()), self.chooseIdle, repr(random.random()) + '-idle')
     
     def chooseIdle(self, task):
         transInfo = {

@@ -24,20 +24,20 @@ from pirates.piratesbase import PLocalizer
 from pirates.piratesbase import UserFunnel
 from pirates.pirate import DynamicHuman
 from pirates.effects import DynamicLight
-from MakeAPirateGlobals import *
+from .MakeAPirateGlobals import *
 import random
-import PirateMale
-import PirateFemale
-import GenderGUI
-import BodyGUI
-import HeadGUI
-import ClothesGUI
-import HairGUI
-import TattooGUI
-import JewelryGUI
-import NameGUI
-import NPCGUI
-from CharGuiBase import CharGuiSlider
+from . import PirateMale
+from . import PirateFemale
+from . import GenderGUI
+from . import BodyGUI
+from . import HeadGUI
+from . import ClothesGUI
+from . import HairGUI
+from . import TattooGUI
+from . import JewelryGUI
+from . import NameGUI
+from . import NPCGUI
+from .CharGuiBase import CharGuiSlider
 MakeAPiratePageIcons = {
     'Body': 'chargui_body',
     'Head': 'chargui_head',
@@ -1708,7 +1708,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
                 if self.lastDialog:
                     self.lastDialog.stop()
                 
-                choice = random.choice(range(0, optionsLeft))
+                choice = random.choice(list(range(0, optionsLeft)))
                 dialog = self.JSD_ANYTIME[idx][choice]
                 base.playSfx(dialog)
                 self.lastDialog = dialog
@@ -1880,7 +1880,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
         if self.inRandomAll:
             return
         
-        choice = random.choice(range(12))
+        choice = random.choice(list(range(12)))
         if choice != 0:
             return
         
@@ -1890,7 +1890,7 @@ class MakeAPirate(DirectObject, StateData.StateData, FSM.FSM):
                 if self.lastDialog.status() == AudioSound.PLAYING:
                     return
 
-            choice = random.choice(range(0, optionsLeft))
+            choice = random.choice(list(range(0, optionsLeft)))
             dialog = self.JSD_CLOTHING[self.pirate.gender][clothesType][choice]
             base.playSfx(dialog)
             self.lastDialog = dialog

@@ -111,7 +111,7 @@ class PiratesQuickLauncher(LauncherBase):
             self.notify.info('mfDetails[%s] = %s' % (mfName, self.mfDetails[mfName]))
         
         heavyDownloadServerString = settings['PATCHER_BASE_URL_HEAVY_LIFTING']
-        for name in string.split(heavyDownloadServerString, ';'):
+        for name in heavyDownloadServerString.split(';'):
             url = URLSpec(name, 1)
             self.heavyDownloadServerList.append(url)
         
@@ -178,7 +178,7 @@ class PiratesQuickLauncher(LauncherBase):
             self.cleanup()
             return
         
-        raise StandardError, 'Some phases not listed in LauncherPhases: %s' % self.requiredInstallFiles
+        raise Exception('Some phases not listed in LauncherPhases: %s' % self.requiredInstallFiles)
 
     def getDecompressMultifile(self, mfname):
         if not self.DecompressMultifiles:

@@ -1,7 +1,6 @@
 from pandac.PandaModules import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.gui.DirectGui import DirectButton
-from direct.showbase.PythonUtil import Enum
 from pirates.piratesgui import PiratesGuiGlobals
 from pirates.piratesbase import PiratesGlobals
 from direct.interval.IntervalGlobal import *
@@ -9,6 +8,7 @@ from pirates.piratesbase import PLocalizer
 from direct.gui.DirectGui import *
 from pirates.piratesgui.BorderFrame import BorderFrame
 from pirates.ship.ShipMeter import ShipMeter
+import enum
 
 class Item(NodePath):
     
@@ -394,7 +394,7 @@ class TextIsland(Island):
         self.helpBox.resetFrameSize()
     
     def showDetails(self, pos):
-        print pos
+        print(pos)
         if self.helpLabel['text'] != '':
             self.helpBox.setPos(pos - Point3(self.helpBox['frameSize'][1] * 1.25, 0, 0))
             self.helpBox.setBin('gui-popup', 0)
@@ -545,7 +545,19 @@ class Dart(PickableModel):
             self.edgeModeNode.setPos(*args, **kwargs)
 
 # Don't touch this
-DecorTypes = Enum('Item,                    Billboard,                    Model,                    BillboardModel,                    Island,                    Text,                    TextIsland,                    Dart,                    Swirl,                    OceanAreaText,                    Ship')
+class DecorTypes(enum.Enum):
+    Item = 1
+    Billboard = 2
+    Model = 3
+    BillboardModel = 4
+    Island = 5
+    Text = 6
+    TextIsland = 7
+    Dart = 8
+    Swirl = 9
+    OceanAreaText = 10
+    Ship = 11
+
 DecorClasses = {
     DecorTypes.Item: Item,
     DecorTypes.Billboard: Billboard,

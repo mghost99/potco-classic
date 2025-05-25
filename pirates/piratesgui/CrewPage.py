@@ -225,7 +225,7 @@ class CrewPage(SocialPage.SocialPage):
         SocialPage.SocialPage.destroy(self)
 
     def leaveCrew(self):
-        for (avId, avButton) in self.crew.iteritems():
+        for (avId, avButton) in self.crew.items():
             av = base.cr.doId2do.get(avId)
             if av:
                 av.refreshName()
@@ -302,7 +302,7 @@ class CrewPage(SocialPage.SocialPage):
             self.repackCrew()
         else:
             self.b_deactivateCrewLookout()
-        for (avId, avButton) in self.crew.iteritems():
+        for (avId, avButton) in self.crew.items():
             av = base.cr.doId2do.get(avId)
             if av:
                 av.refreshName()
@@ -385,7 +385,7 @@ class CrewPage(SocialPage.SocialPage):
                 self.lookingForCrewButton['state'] = DGG.DISABLED
 
         crewMembersIconId = 0
-        for (avId, avButton) in self.crew.iteritems():
+        for (avId, avButton) in self.crew.items():
             av = base.cr.doId2do.get(avId)
             if not av:
                 return

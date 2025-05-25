@@ -568,7 +568,7 @@ class JewelryStoreGUI(DirectFrame):
         camera.setPos(self.initialCamPos)
         camera.setHpr(self.initialCamHpr)
         equips = []
-        for type in self.equipRequests.keys():
+        for type in list(self.equipRequests.keys()):
             equip = self.equipRequests.get(type)
             id = 0
             primary = 0
@@ -802,7 +802,7 @@ class JewelryStoreGUI(DirectFrame):
         elif type == JewelryGlobals.RHAND:
             pirate.setJewelryZone8(idx, primaryColor, secondaryColor)
         else:
-            print 'Unknown type'
+            print('Unknown type')
         pirate.model.handleJewelryHiding()
 
     def addToCart(self, button, type, uid):

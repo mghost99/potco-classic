@@ -116,7 +116,7 @@ class Window(NodePath, ShipPart.ShipPart):
         return filePrefix
     
     def projectileWeaponHit(self, skillId, ammoSkillId, skillResult, targetEffects, pos, normal, codes, attacker):
-        print 'Window Sound'
+        print('Window Sound')
         sfx = random.choice(self.glassBreakSfx)
         base.playSfx(sfx, node = self, cutoff = 2000)
         if base.cr.wantSpecialEffects and self.ship:
