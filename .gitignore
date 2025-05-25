@@ -159,3 +159,5 @@ local/
 # Models
 *.bam
 *.eg
+astron/astrondmac2
+astron/astrondmac
